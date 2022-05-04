@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/4.0/ref/settings/
 """
 
 from pathlib import Path
+import os
+
+BASE_DIR = Path(__file__).resolve(strict=True).parent.parent
+MEDIA_URL = '/Photos/'
+MEDIA_ROOT = os.path.join(BASE_DIR,"Photos")
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,9 +42,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'corsheaders',
+    'EmployeeApp.apps.EmployeeappConfig',
 ]
 
+CORS_ORIGIN_ALLOW_ALL = True
+
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -75,8 +86,12 @@ WSGI_APPLICATION = 'Planillas.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'CLIENT': {
+            "host":"mongodb+srv://planillas:planillas@cluster0.a1k8c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+            "name":"planillas",
+            "authMechanism":"SCRAM-SHA-1" #For atlas cloud db
+        }
     }
 }
 
