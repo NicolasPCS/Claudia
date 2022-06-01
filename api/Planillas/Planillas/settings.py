@@ -84,14 +84,17 @@ WSGI_APPLICATION = 'Planillas.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
+import pymysql
+pymysql.install_as_MySQLdb()
+
 DATABASES = {
     'default': {
-        'ENGINE': 'djongo',
-        'CLIENT': {
-            "host":"mongodb+srv://planillas:planillas@cluster0.a1k8c.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
-            "name":"planillas",
-            "authMechanism":"SCRAM-SHA-1" #For atlas cloud db
-        }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'planillas',
+        'USER': 'guerratesters',
+        'PASSWORD': 'guerratesters',
+        'HOST': 'localhost',
+        'PORT': '3306'
     }
 }
 

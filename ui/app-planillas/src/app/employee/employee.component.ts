@@ -69,6 +69,9 @@ export class EmployeeComponent implements OnInit {
     .subscribe(res=>{
       alert(res.toString());
       this.refreshList();
+      this.EmployeeName = ""
+      this.DateOfJoining = ""
+      this.PhotoFileName = "anonymous.png"
     });
   }
 

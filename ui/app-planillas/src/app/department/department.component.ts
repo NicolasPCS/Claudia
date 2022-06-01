@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { ThisReceiver } from '@angular/compiler';
 
 @Component({
   selector: 'app-department',
@@ -55,6 +56,7 @@ export class DepartmentComponent implements OnInit {
     .subscribe(res=>{
       alert(res.toString());
       this.refreshList();
+      this.DepartmentName = ""
     });
   }
 
